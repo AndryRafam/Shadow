@@ -3,11 +3,12 @@
 
 #include <string>
 
-class ASERP{
-public:
-	ASERP(void);
-	std::string aserp(std::string clr_msg, std::string password, std::string choice);
-	~ASERP(void);
+class ASERP
+{
+	public:
+		ASERP(void);
+		std::string aserp(std::string clr_msg, std::string password, std::string choice);
+		~ASERP(void);
 };
 
 #endif
