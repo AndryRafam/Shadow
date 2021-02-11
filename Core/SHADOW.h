@@ -3,7 +3,8 @@
 
 #include <string>
 
-class SHADOW{
+class SHADOW
+{
 	private:
 		inline bool fileCheck(const std::string &filename);
 		inline bool checkDigit(std::string str);
@@ -12,6 +13,7 @@ class SHADOW{
 		inline bool checkSpecChar(std::string str);
 		inline bool checkPassword(std::string str);
 		inline void about();
+		inline void passRules();
 		void folderAll();
 		void folder();
 		void file();
