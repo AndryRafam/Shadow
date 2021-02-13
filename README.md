@@ -29,20 +29,24 @@ This program comes with a security measure, which means that if the user enters 
 No result is outputted on the terminal. They can be seen directly from the original file(s) / folder(s). The program only output a message that your file(s) / folder(s) has / have been successfully encrypted / decrypted.
 
 <h4 align="left"> File Encryption && Decryption </h4>
+
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCrypt.gif)
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileDcrypt.gif)
 
 <h4 align="left"> Specific Folder Encryption && Decryption </h4>
+
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderCrypt.gif)
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderDcrypt.gif)
 
 <h4 align="left"> Entire Folder (and thus all of its sub folders) Encryption && Decryption </h4>
+
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderAllCrypt.gif)
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderAllDcrypt.gif)
 
 <h4 align="left"> Example of error (enter the wrong password for decryption) </h4>
+
 ![Ouput](https://github.com/AndryRafam/Shadow/blob/main/Output/ErrorDcrypt.gif)
 As we can see, the error message says: "HashVerificationFilter: message hash or MAC not valid.". It means that the hash (signature) of the password we have entered for decryption doesn't not correspond to the hash (signature) of the password we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
