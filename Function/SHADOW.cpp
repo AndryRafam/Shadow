@@ -94,7 +94,6 @@ void SHADOW::file()
 	ASERP crypt;
 	about();
 	std::cout << "\n";
-	passRules();
 
 	std::string filename;
 	std::string clr_msg = "";
@@ -113,8 +112,6 @@ void SHADOW::file()
 
 			system("clear");
 			about();
-			std::cout << "\n";
-			passRules();
 			label:
 				std::cout << "\n";
 				std::cout << "(FILE TO ENCRYPT (Input: /Absolute/path/to/file.extension)) > ";
@@ -125,22 +122,21 @@ void SHADOW::file()
 				system("clear");
 				about();
 				std::cout << "\n";
-				passRules();
-				std::cout << "\n";
 				std::cout << Red << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset;
 				goto label; 
 			}
 			std::ifstream infile;
 			infile.open(filename);
+			system("clear");
 			std::cout << "\n";
 			condition: 
+				passRules();
+				std::cout << "\n";
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
-					passRules();
-					std::cout << "\n";
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -148,8 +144,7 @@ void SHADOW::file()
 			if(passphrase!=password)
 			{
 				system("clear");
-				std::cout << "\n";
-				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			while(infile.get(car))
@@ -163,8 +158,7 @@ void SHADOW::file()
 			ofile.close();
 			system("clear");
 			about();
-			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your file)" << "\n\n";
+			std::cout << "\n" << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY ENCRYPTED - CHECK YOUR FILE)" << Reset << "\n\n";
 		}
 		else if(choice == "d")
 		{
@@ -172,7 +166,6 @@ void SHADOW::file()
 			system("clear");
 			about();
 			std::cout << "\n";
-			passRules();
 			labs:
 				std::cout << "\n";
 				std::cout << "(FILE TO DECRYPT (Input: /Absolute/path/to/file.extension)) > ";
@@ -184,9 +177,7 @@ void SHADOW::file()
 				system("clear");
 				about();
 				std::cout << "\n";
-				passRules();
-				std::cout << "\n";
-				std::cout << Red << std::setw(8) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
+				std::cout << Red << std::setw(24) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto labs;
 			}
 			std::ifstream infile;
@@ -206,7 +197,7 @@ void SHADOW::file()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FILE SUCCESSFULLY DECRYPTED)" << Reset << " (Check your file to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY DECRYPTED - CHECK YOUR FILE)" << Reset << "\n\n";	
 		}
 		else
 		{
@@ -223,8 +214,7 @@ void SHADOW::folder()
 
 	ASERP crypt;
 	about();
-	std::cout << "\n";
-	passRules();
+	std::cout <<"\n";
 	
 	std::string foldername;
 	std::string choice;
@@ -244,20 +234,18 @@ void SHADOW::folder()
 			system("clear");
 			about();
 			std::cout << "\n";
-			passRules();
-			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
+			system("clear");
 			std::cout << "\n";
 
-			condition: 
+			condition:
+				passRules(); 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
-					passRules();
-					std::cout << "\n";
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -265,8 +253,7 @@ void SHADOW::folder()
 			if(passphrase!=password)
 			{
 				system("clear");
-				std::cout << "\n";
-				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			for(const auto & entry : std::filesystem::directory_iterator(foldername))
@@ -294,16 +281,12 @@ void SHADOW::folder()
 			}
 			system("clear");
 			about();
-			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
+			std::cout << "\n" << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";
 		}
 		else if(choice == "d")
 		{
-
 			system("clear");
 			about();
-			std::cout << "\n";
-			passRules();
 			std::cout << "\n";
 			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
@@ -336,7 +319,7 @@ void SHADOW::folder()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";	
 		}
 		else
 		{
@@ -353,8 +336,7 @@ void SHADOW::folderAll()
 
 	ASERP crypt;
 	about();
-	std::cout << "\n";
-	passRules();
+	std::cout <<"\n";
 	
 	std::string foldername;
 	std::string choice;
@@ -374,20 +356,18 @@ void SHADOW::folderAll()
 			system("clear");
 			about();
 			std::cout << "\n";
-			passRules();
-			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
+			system("clear");
 			std::cout << "\n";
 
-			condition: 
+			condition:
+				passRules(); 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
-					passRules();
-					std::cout << "\n";
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -395,8 +375,7 @@ void SHADOW::folderAll()
 			if(passphrase!=password)
 			{
 				system("clear");
-				std::cout << "\n";
-				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
@@ -424,16 +403,12 @@ void SHADOW::folderAll()
 			}
 			system("clear");
 			about();
-			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
+			std::cout << "\n" << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";			
 		}
 		else if(choice == "d")
 		{
-
 			system("clear");
 			about();
-			std::cout << "\n";
-			passRules();
 			std::cout << "\n";
 			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
@@ -466,7 +441,7 @@ void SHADOW::folderAll()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";	
 		}
 		else
 		{
@@ -486,7 +461,7 @@ void SHADOW::run()
 	system("clear");
 	about();
 	std::cout << "\n";
-	std::cout << std::setw(8) << "" << Red << "[ PRESS ENTER TO RUN ]" << Reset;
+	std::cout << std::setw(32) << "" << Red << "[ PRESS ENTER TO RUN ]" << Reset;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	label:
