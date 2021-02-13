@@ -78,7 +78,7 @@ inline void SHADOW::passRules()
 {
 	std::ifstream infile;
 	std::string line;
-	infile.open("PassPhrase.txt");
+	infile.open("PassRules.txt");
 
 	while(std::getline(infile,line))
 	{
@@ -138,7 +138,7 @@ void SHADOW::file()
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					passRules();
 					std::cout << "\n";
 					goto condition;
@@ -149,7 +149,7 @@ void SHADOW::file()
 			{
 				system("clear");
 				std::cout << "\n";
-				std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			while(infile.get(car))
@@ -164,7 +164,7 @@ void SHADOW::file()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your file)" << "\n\n";
+			std::cout << Red << std::setw(8) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your file)" << "\n\n";
 		}
 		else if(choice == "d")
 		{
@@ -186,7 +186,7 @@ void SHADOW::file()
 				std::cout << "\n";
 				passRules();
 				std::cout << "\n";
-				std::cout << Red << std::setw(10) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
+				std::cout << Red << std::setw(8) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto labs;
 			}
 			std::ifstream infile;
@@ -206,7 +206,7 @@ void SHADOW::file()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FILE SUCCESSFULLY DECRYPTED)" << Reset << " (Check your file to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(8) << "" <<"(FILE SUCCESSFULLY DECRYPTED)" << Reset << " (Check your file to see the result)" << "\n\n";	
 		}
 		else
 		{
@@ -221,9 +221,10 @@ void SHADOW::file()
 void SHADOW::folder()
 {
 
-	about();
-
 	ASERP crypt;
+	about();
+	std::cout << "\n";
+	passRules();
 	
 	std::string foldername;
 	std::string choice;
@@ -247,13 +248,14 @@ void SHADOW::folder()
 			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
+			std::cout << "\n";
 
 			condition: 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					passRules();
 					std::cout << "\n";
 					goto condition;
@@ -264,12 +266,15 @@ void SHADOW::folder()
 			{
 				system("clear");
 				std::cout << "\n";
-				std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			for(const auto & entry : std::filesystem::directory_iterator(foldername))
 			{
-				vec.emplace_back(entry.path());
+				if(fileCheck(entry.path()))
+				{
+					vec.emplace_back(entry.path());
+				}
 			}
 			#pragma omp parallel for
 			for(auto &file : vec)
@@ -290,7 +295,7 @@ void SHADOW::folder()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
+			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
 		}
 		else if(choice == "d")
 		{
@@ -305,8 +310,12 @@ void SHADOW::folder()
 			std::cout << "\n";
 			password = getpass("(ENTER PASSWORD) > ");
 
-			for(const auto & entry : std::filesystem::directory_iterator(foldername)){
-				vec.emplace_back(entry.path());
+			for(const auto & entry : std::filesystem::directory_iterator(foldername))
+			{
+				if(fileCheck(entry.path()))
+				{
+					vec.emplace_back(entry.path());
+				}
 			}
 			#pragma omp parallel for
 			for(auto &file : vec)
@@ -327,7 +336,7 @@ void SHADOW::folder()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
 		}
 		else
 		{
@@ -342,9 +351,10 @@ void SHADOW::folder()
 void SHADOW::folderAll()
 {
 
-	about();
-
 	ASERP crypt;
+	about();
+	std::cout << "\n";
+	passRules();
 	
 	std::string foldername;
 	std::string choice;
@@ -354,25 +364,28 @@ void SHADOW::folderAll()
 
 	validChoice:
 		std::cout << "\n";
-		std::cout << "(ENCRYPT OR DECRYPT A FOLDER (and its subfolder) ? (e or d)) > ";
+		std::cout << "(ENCRYPT OR DECRYPT A FOLDER ? (e or d)) > ";
 		std::cin >> choice;
 		std::cin.ignore();
 
 		if(choice == "e")
 		{
+
+			system("clear");
+			about();
 			std::cout << "\n";
 			passRules();
 			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
-
 			std::cout << "\n";
+
 			condition: 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
 					passRules();
 					std::cout << "\n";
 					goto condition;
@@ -383,12 +396,15 @@ void SHADOW::folderAll()
 			{
 				system("clear");
 				std::cout << "\n";
-				std::cout << Red << std::setw(10) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				std::cout << Red << std::setw(8) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
-				vec.emplace_back(entry.path());
+				if(fileCheck(entry.path()))
+				{
+					vec.emplace_back(entry.path());
+				}
 			}
 			#pragma omp parallel for
 			for(auto &file : vec)
@@ -409,7 +425,7 @@ void SHADOW::folderAll()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
+			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";
 		}
 		else if(choice == "d")
 		{
@@ -426,7 +442,10 @@ void SHADOW::folderAll()
 
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
-				vec.emplace_back(entry.path());
+				if(fileCheck(entry.path()))
+				{
+					vec.emplace_back(entry.path());
+				}
 			}
 			#pragma omp parallel for
 			for(auto &file : vec)
@@ -447,7 +466,7 @@ void SHADOW::folderAll()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(10) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
+			std::cout << Red << std::setw(8) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED)" << Reset << " (Check your folder to see the result)" << "\n\n";	
 		}
 		else
 		{
@@ -467,7 +486,7 @@ void SHADOW::run()
 	system("clear");
 	about();
 	std::cout << "\n";
-	std::cout << std::setw(10) << "" << Red << "[ PRESS ENTER TO RUN ]" << Reset;
+	std::cout << std::setw(8) << "" << Red << "[ PRESS ENTER TO RUN ]" << Reset;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	label:
@@ -476,7 +495,7 @@ void SHADOW::run()
 		std::cout << "\n";
 		std::cout << "Encrypt or Decrypt: 1) File" << "\n";
 		std::cout << "                    2) Specific Folder" << "\n";
-		std::cout << "                    3) Folder and its subfolders" << "\n\n";
+		std::cout << "                    3) An entire folder (including its subfolders)" << "\n\n";
 		std::cout << "(Your choice ?) > ";
 		std::cin >> choice;
 		std::cin.ignore();
