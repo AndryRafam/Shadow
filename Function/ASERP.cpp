@@ -10,6 +10,10 @@
 
 #include "../Core/ASERP.h"
 
+#include <cstdio>
+#define Red "\x1B[31m"
+#define Reset "\x1B[0m"
+
 using namespace CryptoPP;
 
 ASERP::ASERP(void){ }
@@ -17,7 +21,7 @@ ASERP::ASERP(void){ }
 std::string ASERP::aserp(std::string text, std::string password, std::string choice)
 {
 	std::string inter, ciphertext, recovered;
-
+	
 	try
 	{
 		SecByteBlock key1(AES::MAX_KEYLENGTH);
@@ -50,7 +54,7 @@ std::string ASERP::aserp(std::string text, std::string password, std::string cho
 	}
 	catch(Exception& ex)
 	{
-		std::cerr << "ERROR: " << ex.what() << std::endl;
+		std::cerr << Red << "ERROR: " << ex.what() << Reset << "\n\n";
 		exit(0);
 	}
 	if(choice == "e")
