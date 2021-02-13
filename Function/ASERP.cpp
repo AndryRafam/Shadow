@@ -20,30 +20,30 @@ std::string ASERP::aserp(std::string text, std::string password, std::string cho
 
 	try
 	{
-		byte key1[AES::MAX_KEYLENGTH];
-		byte key2[Serpent::MAX_KEYLENGTH];
-		byte iv1[AES::BLOCKSIZE];
-		byte iv2[Serpent::BLOCKSIZE];
+		SecByteBlock key1(AES::MAX_KEYLENGTH);
+		SecByteBlock key2(Serpent::MAX_KEYLENGTH);
+		SecByteBlock iv1(AES::BLOCKSIZE);
+		SecByteBlock iv2(Serpent::BLOCKSIZE);
 		HKDF<SHA256> hkdf;
-		hkdf.DeriveKey(key1, sizeof(key1), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0); 
-		hkdf.DeriveKey(key2, sizeof(key2), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
-		hkdf.DeriveKey(iv1, sizeof(iv1), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
-		hkdf.DeriveKey(iv2, sizeof(iv2), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
+		hkdf.DeriveKey(key1, key1.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0); 
+		hkdf.DeriveKey(key2, key2.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
+		hkdf.DeriveKey(iv1, iv1.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
+		hkdf.DeriveKey(iv2, iv2.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
 		GCM<AES>::Encryption enc1;
 		GCM<Serpent>::Encryption enc2;
 		GCM<AES>::Decryption dec1;
 		GCM<Serpent>::Decryption dec2;
 		if(choice == "e")
 		{	
-			enc1.SetKeyWithIV(key1, sizeof(key1), iv1, sizeof(iv1));
-			enc2.SetKeyWithIV(key2, sizeof(key2), iv2, sizeof(iv2));
+			enc1.SetKeyWithIV(key1, key1.size(), iv1, iv1.size());
+			enc2.SetKeyWithIV(key2, key2.size(), iv2, iv2.size());
 			StringSource(text, true, new AuthenticatedEncryptionFilter(enc2, new StringSink(inter)));
 			StringSource(inter, true, new AuthenticatedEncryptionFilter(enc1, new StringSink(ciphertext)));
 		}
 		else
 		{
-			dec1.SetKeyWithIV(key1, sizeof(key1), iv1, sizeof(iv1));
-			dec2.SetKeyWithIV(key2, sizeof(key2), iv2, sizeof(iv2));
+			dec1.SetKeyWithIV(key1, key1.size(), iv1, iv1.size());
+			dec2.SetKeyWithIV(key2, key2.size(), iv2, iv2.size());
 			StringSource(text, true, new AuthenticatedDecryptionFilter(dec1, new StringSink(inter), AuthenticatedDecryptionFilter::THROW_EXCEPTION));
 			StringSource(inter, true, new AuthenticatedDecryptionFilter(dec2, new StringSink(recovered), AuthenticatedDecryptionFilter::THROW_EXCEPTION));
 		}
