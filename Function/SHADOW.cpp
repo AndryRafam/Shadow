@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <filesystem>
 #include <sys/types.h>
-#include <cryptopp/hex.h>
 
 #include "../Core/SHADOW.h"
 #include "../Core/Colors.h"
