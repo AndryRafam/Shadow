@@ -16,5 +16,5 @@ SHADOW is a full double encryption which means that it can encrypt/decrypt a spe
 	5) Password must contains at least ONE Special Character.
 
 <h4 align="left"> WARNING FOR DECRYPTION!!! </h4>
-<h4> This program comes with a security measure, which means that if the user enters the wrong password, the data contains in the files/folders will be erased. (See output example below). </h4>
+This program comes with a security measure, which means that if the user enters the wrong password, the data contains in the files/folders will be erased. (See output example below).
 
