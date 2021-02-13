@@ -15,6 +15,13 @@ SHADOW is a full double encryption which means that it can encrypt/decrypt a spe
 	4) Password must contains at least ONE Digit.
 	5) Password must contains at least ONE Special Character.
 
-<h4 align="left"> WARNING FOR DECRYPTION!!! </h4>
+<h4 align="left"> WARNING FOR DECRYPTION !!! </h4>
 This program comes with a security measure, which means that if the user enters the wrong password, the data contains in the files/folders will be erased. (See output example below).
+
+<h3 align="left"> HOW TO RUN (Command line Debian distros) </h3>
+
+	1) In command line, go to the program directories.
+	2) Type < make > to compile and build the impala file.
+	3) Type ./shadow to rune the program. Enjoy. 
+	
 
