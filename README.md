@@ -49,4 +49,4 @@ No result is outputted on the terminal. They can be seen directly from the origi
 <h4 align="left"> Example of error (enter the wrong password for decryption) </h4>
 
 ![Ouput](https://github.com/AndryRafam/Shadow/blob/main/Output/ErrorDcrypt.gif)
-As we can see, the error message says: "HashVerificationFilter: message hash or MAC not valid.". It means that the hash (signature) of the password we have entered for decryption doesn't not correspond to the hash (signature) of the password we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
+As we can see, the error message says: <h4>"HashVerificationFilter: message hash or MAC not valid."</h4>. It means that the hash (signature) of the password we have entered for decryption doesn't not correspond to the hash (signature) of the password we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
