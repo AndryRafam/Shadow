@@ -17,7 +17,7 @@ SHADOW is a full double encryption program which means that it can encrypt/decry
 	5) Password must contains at least ONE Special Character.
 
 <h4 align="left"> WARNING FOR DECRYPTION !!! </h4>
-This program comes with a security measure, which means that if the user enters the wrong password, the data contained in the files/folders will be erased. (See output example below).
+This program comes with a security measure, which means that if the user enters the wrong password, the data contained in the files/folders will be erased. (See output example at the last line).
 
 <h2 align="left"> HOW TO RUN ON LINUX </h2>
 
