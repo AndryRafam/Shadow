@@ -30,6 +30,8 @@ This section contains 2 examples of output:
 
 - 1) The first one shows an encryption of a file. (The result is outputted in hexadecimal value).
 - 2) The second one shows what is happening if the user enter the wrong password during the decryption mode.
+<h4 align="left"> For others ouput (Folders / Subfolders encryption && decryption), open the "Output" folder above. </h4>
+
 
 <h3 align="left"> File Encryption Examples (Click on the picture to zoom it) </h3>
 
