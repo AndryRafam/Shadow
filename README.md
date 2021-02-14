@@ -35,7 +35,9 @@ This section contains 2 examples of output:
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCrypt.gif)
 
+<h3 align="left"> File Decryption Error </h3>
 
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/ErrorDcrypt.gif)
 
 As we can see, the error message says: <h4>"HashVerificationFilter: message hash or MAC not valid."</h4> 
 It means that the hash (signature) of the password we have entered for decryption doesn't not correspond to the hash (signature) of the password we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
