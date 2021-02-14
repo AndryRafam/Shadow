@@ -27,8 +27,14 @@ This program comes with a security measure, which means that if the user enters 
 	
 <h2 align="left"> OUTPUT EXAMPLES </h2>
 This section contains 2 examples of output:
- -1) The first one shows an encryption of a file. (The result is outputted in hexadecimal value).
- -2) The second one shows what is happening if the user enter the wrong password during the decryption mode.
+
+- 1) The first one shows an encryption of a file. (The result is outputted in hexadecimal value).
+- 2) The second one shows what is happening if the user enter the wrong password during the decryption mode.
+
+<h3 align="left"> File Encryption Examples </h3>
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCrypt.gif)
+
+
 
 As we can see, the error message says: <h4>"HashVerificationFilter: message hash or MAC not valid."</h4> 
 It means that the hash (signature) of the password we have entered for decryption doesn't not correspond to the hash (signature) of the password we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
