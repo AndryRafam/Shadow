@@ -8,10 +8,14 @@
 #include <algorithm>
 #include <filesystem>
 #include <sys/types.h>
+#include <cryptopp/filters.h>
+#include <cryptopp/hex.h>
 
 #include "../Core/SHADOW.h"
 #include "../Core/Colors.h"
 #include "../Core/ASERP.h"
+
+using namespace CryptoPP;
 
 SHADOW::SHADOW(void){ }
 
@@ -106,11 +110,12 @@ void SHADOW::file()
 		std::cin >> choice;
 		std::cin.ignore();
 
+		system("clear");
+		about();
+
 		if(choice == "e")
 		{
-
-			system("clear");
-			about();
+	
 			label:
 				std::cout << "\n";
 				std::cout << "(FILE TO ENCRYPT (Input: /Absolute/path/to/file.extension)) > ";
@@ -119,23 +124,22 @@ void SHADOW::file()
 			if(!fileCheck(filename))
 			{
 				system("clear");
-				about();
 				std::cout << "\n";
-				std::cout << Red << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset;
+				about();
+				std::cout << Red << std::setw(24) << "" << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto label; 
 			}
 			std::ifstream infile;
 			infile.open(filename);
-			system("clear");
-			std::cout << "\n";
+
 			condition: 
-				passRules();
 				std::cout << "\n";
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -143,7 +147,8 @@ void SHADOW::file()
 			if(passphrase!=password)
 			{
 				system("clear");
-				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
+				about();
+				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n";
 				goto condition;
 			}
 			while(infile.get(car))
@@ -157,7 +162,20 @@ void SHADOW::file()
 			ofile.close();
 			system("clear");
 			about();
-			std::cout << "\n" << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY ENCRYPTED - CHECK YOUR FILE)" << Reset << "\n\n";
+			std::cout << "\n" << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << "\n\n";
+
+			std::ifstream Ifile;
+			std::string text = "";
+			char tt;
+			Ifile.open(filename);
+			while(Ifile.get(tt))
+			{
+				text+=tt;
+			}
+			Ifile.close();
+			std::string hexencoded;
+			StringSource(text, true, new HexEncoder(new StringSink(hexencoded)));
+			std::cout << hexencoded << "\n";
 		}
 		else if(choice == "d")
 		{
@@ -227,24 +245,24 @@ void SHADOW::folder()
 		std::cin >> choice;
 		std::cin.ignore();
 
+		system("clear");
+		about();
+
 		if(choice == "e")
 		{
 
-			system("clear");
-			about();
 			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
-			system("clear");
 			std::cout << "\n";
 
 			condition:
-				passRules(); 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -252,6 +270,7 @@ void SHADOW::folder()
 			if(passphrase!=password)
 			{
 				system("clear");
+				about();
 				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
@@ -349,24 +368,23 @@ void SHADOW::folderAll()
 		std::cin >> choice;
 		std::cin.ignore();
 
+		system("clear");
+		about();
+
 		if(choice == "e")
 		{
-
-			system("clear");
-			about();
 			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
-			system("clear");
 			std::cout << "\n";
 
-			condition:
-				passRules(); 
+			condition: 
 				password = getpass("(ENTER PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. READ THE PASSWORD RULES BELOW. " << Reset << "\n\n";
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
 					goto condition;
 				}
 			std::cout << "\n";
@@ -374,6 +392,7 @@ void SHADOW::folderAll()
 			if(passphrase!=password)
 			{
 				system("clear");
+				about();
 				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
 				goto condition;
 			}
@@ -460,7 +479,13 @@ void SHADOW::run()
 	system("clear");
 	about();
 	std::cout << "\n";
-	std::cout << std::setw(32) << "" << Red << "[ PRESS ENTER TO RUN ]" << Reset;
+	std::cout << std::setw(32) << "" << Red << "[ PRESS ENTER TO START ]" << Reset;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+	system("clear");
+	std::cout << "\n" << std::setw(24) << "" << Red << "READ THE PASSWORD RULES FIRST." << Reset << "\n\n";
+	passRules();
+	std::cout << std::setw(16) << "" << Red << "[ DO YOU UNDERSTAND THE RULES ? IF YES, PRESS ENTER TO RUN ]" << Reset;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	label:
