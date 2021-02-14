@@ -32,6 +32,7 @@ This section contains 2 examples of output:
 - 2) The second one shows what is happening if the user enter the wrong password during the decryption mode.
 
 <h3 align="left"> File Encryption Examples </h3>
+
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCrypt.gif)
 
 
