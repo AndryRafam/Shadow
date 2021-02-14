@@ -31,11 +31,11 @@ This section contains 2 examples of output:
 - 1) The first one shows an encryption of a file. (The result is outputted in hexadecimal value).
 - 2) The second one shows what is happening if the user enter the wrong password during the decryption mode.
 
-<h3 align="left"> File Encryption Examples </h3>
+<h3 align="left"> File Encryption Examples (Click on the picture to zoom it) </h3>
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCrypt.gif)
 
-<h3 align="left"> File Decryption Error </h3>
+<h3 align="left"> File Decryption Error (Click on the picture to zoom it) </h3>
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/ErrorDcrypt.gif)
 
