@@ -7,7 +7,7 @@ class ASERP
 {
 	public:
 		ASERP(void);
-		std::string aserp(std::string clr_msg, std::string password, std::string choice);
+		std::string aserp(std::string clr_msg, std::string password, std::string salt, std::string choice);
 		~ASERP(void);
 };
 
