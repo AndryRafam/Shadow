@@ -20,7 +20,7 @@
 
 		PASSWORD RULES:
 	
-		Thre program requires two passwords for encryption and decryption.
+		The program requires two passwords for encryption and decryption.
 		Each password must be different.
 
 		1) Each password must be at least 12 Characters long (At least 12 characters).
