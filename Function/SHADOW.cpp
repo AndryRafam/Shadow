@@ -71,8 +71,9 @@ inline void SHADOW::about()
 
 	while(std::getline(infile,line))
 	{
-		std::cout << line << std::endl;
+		std::cout << Green << line << std::endl;
 	}
+	std::cout << Reset;
 	infile.close();
 	return;
 }
@@ -132,25 +133,26 @@ void SHADOW::file()
 			std::ifstream infile;
 			infile.open(filename);
 
-			condition: 
+			condition1: 
 				std::cout << "\n";
-				password = getpass("(ENTER PASSWORD) > ");
+				password = getpass("(ENTER 1ST PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
-					goto condition;
+					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
+					goto condition1;
 				}
 			std::cout << "\n";
-			passphrase = getpass("(CONFIRM PASSWORD) > ");
-			if(passphrase!=password)
-			{
-				system("clear");
-				about();
-				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n";
-				goto condition;
-			}
+			condition2:
+				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
+				if(passphrase==password or !checkPassword(passphrase))
+				{
+					system("clear");
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY,  2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n";
+					goto condition2;
+				}
 			while(infile.get(car))
 			{
 				clr_msg+=car;	
@@ -158,7 +160,7 @@ void SHADOW::file()
 			infile.close();
 			std::ofstream ofile;
 			ofile.open(filename, std::ofstream::out | std::ofstream::trunc);
-			ofile << crypt.aserp(clr_msg,password,choice);
+			ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 			ofile.close();
 			system("clear");
 			about();
@@ -200,7 +202,9 @@ void SHADOW::file()
 			std::ifstream infile;
 			infile.open(filename);
 			std::cout << "\n";
-			password = getpass("(ENTER PASSWORD) > ");
+			password = getpass("(ENTER 1ST PASSWORD) > ");
+			std::cout << "\n";
+			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
 			while(infile.get(car))
 			{
 				clr_msg+=car;
@@ -208,7 +212,7 @@ void SHADOW::file()
 			infile.close();
 			std::ofstream ofile;
 			ofile.open(filename, std::ofstream::out | std::ofstream::trunc);
-			ofile << crypt.aserp(clr_msg,password,choice);
+			ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 			ofile.close();
 
 			system("clear");
@@ -256,24 +260,25 @@ void SHADOW::folder()
 			std::getline(std::cin,foldername);
 			std::cout << "\n";
 
-			condition:
-				password = getpass("(ENTER PASSWORD) > ");
+			condition1:
+				password = getpass("(ENTER 1ST PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
-					goto condition;
+					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
+					goto condition1;
 				}
 			std::cout << "\n";
-			passphrase = getpass("(CONFIRM PASSWORD) > ");
-			if(passphrase!=password)
-			{
-				system("clear");
-				about();
-				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
-				goto condition;
-			}
+			condition2:
+				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
+				if(passphrase==password or !checkPassword(passphrase))
+				{
+					system("clear");
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY, 2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSOWRD. TRY AGAIN." << Reset << "\n\n";
+					goto condition2;
+				}
 			for(const auto & entry : std::filesystem::directory_iterator(foldername))
 			{
 				if(fileCheck(entry.path()))
@@ -294,7 +299,7 @@ void SHADOW::folder()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,choice);
+				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 				ofile.close();
 			}
 			system("clear");
@@ -309,7 +314,9 @@ void SHADOW::folder()
 			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
 			std::cout << "\n";
-			password = getpass("(ENTER PASSWORD) > ");
+			password = getpass("(ENTER 1ST PASSWORD) > ");
+			std::cout << "\n";
+			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
 
 			for(const auto & entry : std::filesystem::directory_iterator(foldername))
 			{
@@ -331,7 +338,7 @@ void SHADOW::folder()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,choice);
+				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 				ofile.close();
 			}
 			system("clear");
@@ -378,24 +385,25 @@ void SHADOW::folderAll()
 			std::getline(std::cin,foldername);
 			std::cout << "\n";
 
-			condition: 
-				password = getpass("(ENTER PASSWORD) > ");
+			condition1: 
+				password = getpass("(ENTER 1ST PASSWORD) > ");
 				if(!checkPassword(password))
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD NOT ENOUGH COMPLEX. (REMEMBER THE PASSWORD RULES) " << Reset << "\n";
-					goto condition;
+					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
+					goto condition1;
 				}
 			std::cout << "\n";
-			passphrase = getpass("(CONFIRM PASSWORD) > ");
-			if(passphrase!=password)
-			{
-				system("clear");
-				about();
-				std::cout << Red << std::setw(24) << "" << " SORRY, PASSWORD DOESN'T MATCH. TRY AGAIN." << Reset << "\n\n";
-				goto condition;
-			}
+			condition2:
+				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
+				if(passphrase==password)
+				{
+					system("clear");
+					about();
+					std::cout << Red << std::setw(24) << "" << " SORRY, 2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n\n";
+					goto condition2;
+				}
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
 				if(fileCheck(entry.path()))
@@ -416,7 +424,7 @@ void SHADOW::folderAll()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,choice);
+				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 				ofile.close();
 			}
 			system("clear");
@@ -431,7 +439,9 @@ void SHADOW::folderAll()
 			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
 			std::cout << "\n";
-			password = getpass("(ENTER PASSWORD) > ");
+			password = getpass("(ENTER 1ST PASSWORD) > ");
+			std::cout << "\n";
+			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
 
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
@@ -453,7 +463,7 @@ void SHADOW::folderAll()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,choice);
+				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
 				ofile.close();
 			}
 			system("clear");
