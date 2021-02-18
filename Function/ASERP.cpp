@@ -18,7 +18,7 @@ using namespace CryptoPP;
 
 ASERP::ASERP(void){ }
 
-std::string ASERP::aserp(std::string text, std::string password, std::string choice)
+std::string ASERP::aserp(std::string text, std::string password, std::string salt, std::string choice)
 {
 	std::string inter, ciphertext, recovered;
 	
@@ -29,10 +29,10 @@ std::string ASERP::aserp(std::string text, std::string password, std::string cho
 		SecByteBlock iv1(AES::BLOCKSIZE);
 		SecByteBlock iv2(Serpent::BLOCKSIZE);
 		HKDF<SHA256> hkdf;
-		hkdf.DeriveKey(key1, key1.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0); 
-		hkdf.DeriveKey(key2, key2.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
-		hkdf.DeriveKey(iv1, iv1.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
-		hkdf.DeriveKey(iv2, iv2.size(), (const byte*)password.data(), password.size(), NULL, 0, NULL, 0);
+		hkdf.DeriveKey(key1, key1.size(), (const byte*)password.data(), password.size(), (const byte*)salt.data(), salt.size(), NULL, 0); 
+		hkdf.DeriveKey(key2, key2.size(), (const byte*)password.data(), password.size(), (const byte*)salt.data(), salt.size(), NULL, 0);
+		hkdf.DeriveKey(iv1, iv1.size(), (const byte*)password.data(), password.size(), (const byte*)salt.data(), salt.size(), NULL, 0);
+		hkdf.DeriveKey(iv2, iv2.size(), (const byte*)password.data(), password.size(), (const byte*)salt.data(), salt.size(), NULL, 0);
 		GCM<AES>::Encryption enc1;
 		GCM<Serpent>::Encryption enc2;
 		GCM<AES>::Decryption dec1;
@@ -54,6 +54,7 @@ std::string ASERP::aserp(std::string text, std::string password, std::string cho
 	}
 	catch(Exception& ex)
 	{
+		std::cout << "\n";
 		std::cerr << Red << "ERROR: " << ex.what() << Reset << "\n\n";
 		exit(0);
 	}
