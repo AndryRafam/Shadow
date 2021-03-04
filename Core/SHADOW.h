@@ -14,7 +14,7 @@ class SHADOW
 		inline bool checkPassword(std::string str);
 		inline void about();
 		inline void passRules();
-		void folderAll();
+		inline int sum(std::string str);
 		void folder();
 		void file();
 		
