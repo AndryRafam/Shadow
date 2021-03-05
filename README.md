@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/Algorithm-SHA-orange.svg?style=plastic&logo)
 ![](https://img.shields.io/badge/Tools-SublimeText-orange.svg?style=plastic&logo)
 <h1 align="center"> SHADOW </h1>
-SHADOW is a full double encryption program which means that it can encrypt/decrypt a specific file, a specific folder or an entire folder and thus all of its sub folders. The program is based on AES-256, SHA-256 and uses GCM (Galois/Counter Mode) as an operation mode for encryption. This program is intended for Linux OS.
+SHADOW is a full double encryption/decryption program which means that it can encrypt/decrypt files or folders. The program is based on AES-256-GCM mode and SHA-256.
 
 <h2 align="left"> PASSWORD RULES </h2>
 The program requires two passwords for encryption and decryption. Each password must be different.
@@ -14,6 +14,7 @@ The program requires two passwords for encryption and decryption. Each password 
 - 3) Each password must contains at least ONE Lower character.
 - 4) Each password must contains at least ONE Digit.
 - 5) Each password must contains at least ONE Special Character.
+Passwords comes with a salt parameter.
 
 <h2 align="left"> HOW TO RUN ON LINUX </h2>
 
