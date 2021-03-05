@@ -160,8 +160,6 @@ void SHADOW::file()
 					std::cout << Red << std::setw(24) << "" << " SORRY,  2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n";
 					goto condition2;
 				}
-			s1 = sum(pass1);
-			s2 = sum(pass2);
 			std::string line;
 			std::ifstream Ifile;
 			Ifile.open("Salt.txt");
@@ -170,6 +168,9 @@ void SHADOW::file()
 				salt.emplace_back(line);
 			}
 			Ifile.close();
+			int s = salt.size();
+			s1 = sum(pass1)%s;
+			s2 = sum(pass2)%s;
 			std::ifstream infile;
 			infile.open(filename);
 			while(infile.get(car))
@@ -207,8 +208,6 @@ void SHADOW::file()
 			pass1 = getpass("(ENTER 1ST PASSWORD) > ");
 			std::cout << "\n";
 			pass2 = getpass("(ENTER 2ND PASSWORD) > ");
-			s1 = sum(pass1);
-			s2 = sum(pass2);
 			std::string line;
 			std::ifstream Ifile;
 			Ifile.open("Salt.txt");
@@ -217,6 +216,9 @@ void SHADOW::file()
 				salt.emplace_back(line);
 			}
 			Ifile.close();
+			int s = salt.size();
+			s1 = sum(pass1)%s;
+			s2 = sum(pass2)%s;
 			std::ifstream infile;
 			infile.open(filename);
 			while(infile.get(car))
@@ -299,16 +301,17 @@ void SHADOW::folder()
 					vec.emplace_back(entry.path());
 				}
 			}
-			s1 = sum(pass1);
-			s2 = sum(pass2);
-			std::string line;
 			std::ifstream Ifile;
+			std::string line;
 			Ifile.open("Salt.txt");
 			while(getline(Ifile,line))
 			{
 				salt.emplace_back(line);
 			}
 			Ifile.close();
+			int s = salt.size();
+			s1 = sum(pass1)%s;
+			s2 = sum(pass2)%s;
 			#pragma omp parallel for
 			for(auto &file : vec)
 			{
@@ -347,8 +350,6 @@ void SHADOW::folder()
 					vec.emplace_back(entry.path());
 				}
 			}
-			s1 = sum(pass1);
-			s2 = sum(pass2);
 			std::string line;
 			std::ifstream Ifile;
 			Ifile.open("Salt.txt");
@@ -357,6 +358,9 @@ void SHADOW::folder()
 				salt.emplace_back(line);
 			}
 			Ifile.close();
+			int s = salt.size();
+			s1 = sum(pass1)%s;
+			s2 = sum(pass2)%s;
 			#pragma omp parallel for
 			for(auto &file : vec)
 			{
