@@ -14,7 +14,6 @@ The program requires two passwords for encryption and decryption. Each password 
 - 3) Each password must contains at least ONE Lower character.
 - 4) Each password must contains at least ONE Digit.
 - 5) Each password must contains at least ONE Special Character.
-Passwords comes with a salt parameter.
 
 <h2 align="left"> HOW TO RUN ON LINUX </h2>
 
