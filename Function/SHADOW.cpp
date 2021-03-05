@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <iomanip>
 #include <limits>
@@ -9,7 +10,6 @@
 #include <filesystem>
 #include <sys/types.h>
 #include <cryptopp/filters.h>
-#include <cryptopp/hex.h>
 
 #include "../Core/SHADOW.h"
 #include "../Core/Colors.h"
@@ -50,7 +50,7 @@ inline bool SHADOW::checkSpecChar(std::string str)
 
 inline bool SHADOW::checkPassword(std::string str)
 {
-	return((checkDigit(str) && checkLower(str) && checkUpper(str) && checkSpecChar(str) && str.length()>=12) ? true:false);
+	return((checkDigit(str) && checkLower(str) && checkUpper(str) && checkSpecChar(str) && str.length()>=16) ? true:false);
 }
 
 inline bool SHADOW::fileCheck(const std::string &filename)
@@ -92,6 +92,16 @@ inline void SHADOW::passRules()
 	return;
 }
 
+inline int SHADOW::sum(std::string str)
+{
+	int c = 0;
+	for(auto x = 0; str[x]; x++)
+	{
+		c+=int(str[x]);
+	}
+	return c;
+}
+
 void SHADOW::file()
 {
 
@@ -102,11 +112,12 @@ void SHADOW::file()
 	std::string filename;
 	std::string clr_msg = "";
 	std::string choice;
-	std::string password, passphrase;
+	std::string pass1, pass2;
+	std::vector<std::string> salt;
+	int s1,s2;
 	char car;
 
 	validChoice:
-		std::cout << "\n";
 		std::cout << "(ENCRYPT OR DECRYPT A FILE ? (e or d)) > ";
 		std::cin >> choice;
 		std::cin.ignore();
@@ -116,7 +127,6 @@ void SHADOW::file()
 
 		if(choice == "e")
 		{
-	
 			label:
 				std::cout << "\n";
 				std::cout << "(FILE TO ENCRYPT (Input: /Absolute/path/to/file.extension)) > ";
@@ -130,13 +140,10 @@ void SHADOW::file()
 				std::cout << Red << std::setw(24) << "" << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto label; 
 			}
-			std::ifstream infile;
-			infile.open(filename);
-
 			condition1: 
 				std::cout << "\n";
-				password = getpass("(ENTER 1ST PASSWORD) > ");
-				if(!checkPassword(password))
+				pass1 = getpass("(ENTER 1ST PASSWORD) > ");
+				if(!checkPassword(pass1))
 				{
 					system("clear");
 					about();
@@ -145,14 +152,26 @@ void SHADOW::file()
 				}
 			std::cout << "\n";
 			condition2:
-				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
-				if(passphrase==password or !checkPassword(passphrase))
+				pass2 = getpass("(ENTER 2ND PASSWORD) > ");
+				if(pass2==pass1 or !checkPassword(pass2))
 				{
 					system("clear");
 					about();
 					std::cout << Red << std::setw(24) << "" << " SORRY,  2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n";
 					goto condition2;
 				}
+			s1 = sum(pass1);
+			s2 = sum(pass2);
+			std::string line;
+			std::ifstream Ifile;
+			Ifile.open("Salt.txt");
+			while(getline(Ifile,line))
+			{
+				salt.emplace_back(line);
+			}
+			Ifile.close();
+			std::ifstream infile;
+			infile.open(filename);
 			while(infile.get(car))
 			{
 				clr_msg+=car;	
@@ -160,31 +179,16 @@ void SHADOW::file()
 			infile.close();
 			std::ofstream ofile;
 			ofile.open(filename, std::ofstream::out | std::ofstream::trunc);
-			ofile << crypt.aserp(clr_msg,password,passphrase,choice);
+			ofile << crypt.aserp(clr_msg,pass1,salt[s1],pass2,salt[s2],choice);
 			ofile.close();
 			system("clear");
 			about();
 			std::cout << "\n" << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << "\n\n";
-
-			std::ifstream Ifile;
-			std::string text = "";
-			char tt;
-			Ifile.open(filename);
-			while(Ifile.get(tt))
-			{
-				text+=tt;
-			}
-			Ifile.close();
-			std::string hexencoded;
-			StringSource(text, true, new HexEncoder(new StringSink(hexencoded)));
-			std::cout << hexencoded << "\n";
 		}
 		else if(choice == "d")
 		{
-
 			system("clear");
 			about();
-			std::cout << "\n";
 			labs:
 				std::cout << "\n";
 				std::cout << "(FILE TO DECRYPT (Input: /Absolute/path/to/file.extension)) > ";
@@ -199,12 +203,22 @@ void SHADOW::file()
 				std::cout << Red << std::setw(24) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto labs;
 			}
+			std::cout << "\n";
+			pass1 = getpass("(ENTER 1ST PASSWORD) > ");
+			std::cout << "\n";
+			pass2 = getpass("(ENTER 2ND PASSWORD) > ");
+			s1 = sum(pass1);
+			s2 = sum(pass2);
+			std::string line;
+			std::ifstream Ifile;
+			Ifile.open("Salt.txt");
+			while(getline(Ifile,line))
+			{
+				salt.emplace_back(line);
+			}
+			Ifile.close();
 			std::ifstream infile;
 			infile.open(filename);
-			std::cout << "\n";
-			password = getpass("(ENTER 1ST PASSWORD) > ");
-			std::cout << "\n";
-			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
 			while(infile.get(car))
 			{
 				clr_msg+=car;
@@ -212,7 +226,7 @@ void SHADOW::file()
 			infile.close();
 			std::ofstream ofile;
 			ofile.open(filename, std::ofstream::out | std::ofstream::trunc);
-			ofile << crypt.aserp(clr_msg,password,passphrase,choice);
+			ofile << crypt.aserp(clr_msg,pass1,salt[s1],pass2,salt[s2],choice);
 			ofile.close();
 
 			system("clear");
@@ -239,138 +253,12 @@ void SHADOW::folder()
 	
 	std::string foldername;
 	std::string choice;
-	std::string password, passphrase;
-	std::vector<std::string> vec;
+	std::string pass1, pass2;
+	std::vector<std::string> vec, salt;
+	int s1,s2;
 	char car;
 
 	validChoice:
-		std::cout << "\n";
-		std::cout << "(ENCRYPT OR DECRYPT A FOLDER ? (e or d)) > ";
-		std::cin >> choice;
-		std::cin.ignore();
-
-		system("clear");
-		about();
-
-		if(choice == "e")
-		{
-
-			std::cout << "\n";
-			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
-			std::getline(std::cin,foldername);
-			std::cout << "\n";
-
-			condition1:
-				password = getpass("(ENTER 1ST PASSWORD) > ");
-				if(!checkPassword(password))
-				{
-					system("clear");
-					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
-					goto condition1;
-				}
-			std::cout << "\n";
-			condition2:
-				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
-				if(passphrase==password or !checkPassword(passphrase))
-				{
-					system("clear");
-					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, 2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSOWRD. TRY AGAIN." << Reset << "\n\n";
-					goto condition2;
-				}
-			for(const auto & entry : std::filesystem::directory_iterator(foldername))
-			{
-				if(fileCheck(entry.path()))
-				{
-					vec.emplace_back(entry.path());
-				}
-			}
-			#pragma omp parallel for
-			for(auto &file : vec)
-			{
-				std::string clr_msg = "";
-				std::ifstream infile;
-				infile.open(file);
-				while(infile.get(car))
-				{
-					clr_msg+=car;	
-				}
-				infile.close();
-				std::ofstream ofile;
-				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
-				ofile.close();
-			}
-			system("clear");
-			about();
-			std::cout << "\n" << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";
-		}
-		else if(choice == "d")
-		{
-			system("clear");
-			about();
-			std::cout << "\n";
-			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
-			std::getline(std::cin,foldername);
-			std::cout << "\n";
-			password = getpass("(ENTER 1ST PASSWORD) > ");
-			std::cout << "\n";
-			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
-
-			for(const auto & entry : std::filesystem::directory_iterator(foldername))
-			{
-				if(fileCheck(entry.path()))
-				{
-					vec.emplace_back(entry.path());
-				}
-			}
-			#pragma omp parallel for
-			for(auto &file : vec)
-			{
-				std::string clr_msg = "";
-				std::ifstream infile;
-				infile.open(file);
-				while(infile.get(car))
-				{
-					clr_msg+=car;
-				}
-				infile.close();
-				std::ofstream ofile;
-				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
-				ofile.close();
-			}
-			system("clear");
-			about();
-			std::cout << "\n";
-			std::cout << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";	
-		}
-		else
-		{
-			system("clear");
-			about();
-			goto validChoice;
-		}
-	std::cout << "\n";
-	return;
-}
-
-void SHADOW::folderAll()
-{
-
-	ASERP crypt;
-	about();
-	std::cout <<"\n";
-	
-	std::string foldername;
-	std::string choice;
-	std::string password, passphrase;
-	std::vector<std::string> vec;
-	char car;
-
-	validChoice:
-		std::cout << "\n";
 		std::cout << "(ENCRYPT OR DECRYPT A FOLDER ? (e or d)) > ";
 		std::cin >> choice;
 		std::cin.ignore();
@@ -383,11 +271,11 @@ void SHADOW::folderAll()
 			std::cout << "\n";
 			std::cout << "(FOLDER TO ENCRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
-			std::cout << "\n";
 
 			condition1: 
-				password = getpass("(ENTER 1ST PASSWORD) > ");
-				if(!checkPassword(password))
+				std::cout << "\n";
+				pass1 = getpass("(ENTER 1ST PASSWORD) > ");
+				if(!checkPassword(pass1))
 				{
 					system("clear");
 					about();
@@ -396,8 +284,8 @@ void SHADOW::folderAll()
 				}
 			std::cout << "\n";
 			condition2:
-				passphrase = getpass("(ENTER 2ND PASSWORD) > ");
-				if(passphrase==password)
+				pass2 = getpass("(ENTER 2ND PASSWORD) > ");
+				if(pass1==pass2)
 				{
 					system("clear");
 					about();
@@ -411,6 +299,16 @@ void SHADOW::folderAll()
 					vec.emplace_back(entry.path());
 				}
 			}
+			s1 = sum(pass1);
+			s2 = sum(pass2);
+			std::string line;
+			std::ifstream Ifile;
+			Ifile.open("Salt.txt");
+			while(getline(Ifile,line))
+			{
+				salt.emplace_back(line);
+			}
+			Ifile.close();
 			#pragma omp parallel for
 			for(auto &file : vec)
 			{
@@ -424,7 +322,7 @@ void SHADOW::folderAll()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
+				ofile << crypt.aserp(clr_msg,pass1,salt[s1],pass2,salt[s2],choice);
 				ofile.close();
 			}
 			system("clear");
@@ -439,10 +337,9 @@ void SHADOW::folderAll()
 			std::cout << "(FOLDER TO DECRYPT (Input: /Absolute/path/to/folder)) > ";
 			std::getline(std::cin,foldername);
 			std::cout << "\n";
-			password = getpass("(ENTER 1ST PASSWORD) > ");
+			pass1 = getpass("(ENTER 1ST PASSWORD) > ");
 			std::cout << "\n";
-			passphrase = getpass("(ENTER 2ND PASSWORD) > ");
-
+			pass2 = getpass("(ENTER 2ND PASSWORD) > ");
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
 				if(fileCheck(entry.path()))
@@ -450,6 +347,16 @@ void SHADOW::folderAll()
 					vec.emplace_back(entry.path());
 				}
 			}
+			s1 = sum(pass1);
+			s2 = sum(pass2);
+			std::string line;
+			std::ifstream Ifile;
+			Ifile.open("Salt.txt");
+			while(getline(Ifile,line))
+			{
+				salt.emplace_back(line);
+			}
+			Ifile.close();
 			#pragma omp parallel for
 			for(auto &file : vec)
 			{
@@ -463,7 +370,7 @@ void SHADOW::folderAll()
 				infile.close();
 				std::ofstream ofile;
 				ofile.open(file, std::ofstream::out | std::ofstream::trunc);
-				ofile << crypt.aserp(clr_msg,password,passphrase,choice);
+				ofile << crypt.aserp(clr_msg,pass1,salt[s1],pass2,salt[s2],choice);
 				ofile.close();
 			}
 			system("clear");
@@ -503,8 +410,7 @@ void SHADOW::run()
 		about();
 		std::cout << "\n";
 		std::cout << "Encrypt or Decrypt: 1) File" << "\n";
-		std::cout << "                    2) Specific Folder" << "\n";
-		std::cout << "                    3) An entire folder (including its subfolders)" << "\n\n";
+		std::cout << "                    2) Folder" << "\n\n";
 		std::cout << "(Your choice ?) > ";
 		std::cin >> choice;
 		std::cin.ignore();
@@ -518,11 +424,6 @@ void SHADOW::run()
 	{
 		system("clear");
 		folder();
-	}
-	else if(choice == 3)
-	{
-		system("clear");
-		folderAll();
 	}
 	else
 	{
