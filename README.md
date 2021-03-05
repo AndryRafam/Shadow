@@ -1,7 +1,6 @@
 ![](https://img.shields.io/badge/Code-C++-orange.svg?style=plastic&logo=c%2B%2B)
 ![](https://img.shields.io/badge/OS-Linux-orange.svg?style=plastic&logo=Linux)
 ![](https://img.shields.io/badge/Algorithm-AES-orange.svg?style=plastic&logo)
-![](https://img.shields.io/badge/Algorithm-Serpent-orange.svg?style=plastic&logo)
 ![](https://img.shields.io/badge/Algorithm-SHA-orange.svg?style=plastic&logo)
 ![](https://img.shields.io/badge/Tools-SublimeText-orange.svg?style=plastic&logo)
 <h1 align="center"> SHADOW </h1>
@@ -10,38 +9,17 @@ SHADOW is a full double encryption program which means that it can encrypt/decry
 <h2 align="left"> PASSWORD RULES </h2>
 The program requires two passwords for encryption and decryption. Each password must be different.
 
-	1) Each password must be at least 12 Characters long (At least 12 characters).
-	2) Each password must contains at least ONE Upper character.
-	3) Each password must contains at least ONE Lower character.
-	4) Each password must contains at least ONE Digit.
-	5) Each password must contains at least ONE Special Character.
+1) Each password must be at least 12 Characters long (At least 12 characters).
+2) Each password must contains at least ONE Upper character.
+3) Each password must contains at least ONE Lower character.
+4) Each password must contains at least ONE Digit.
+5) Each password must contains at least ONE Special Character.
 
 <h4 align="left"> WARNING FOR DECRYPTION !!! </h4>
 This program comes with a security measure, which means that if the user enters the wrong password, the data contained in the files/folders will be erased. (See output example at the last line).
 
 <h2 align="left"> HOW TO RUN ON LINUX </h2>
 
-	1) In command line, go to the program directory.
-	2) Type < make > to compile and build the files.
-	3) Type ./shadow to run the program. Enjoy.
-	
-<h2 align="left"> OUTPUT EXAMPLES </h2>
-
-<h3 align="left"> Folder Encryption (Click on the picture to zoom it) </h3>
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderCRYPT.gif)
-
-<h3 align="left"> Folder Decryption (Click on the picture to zoom it) </h3>
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FolderDCRYPT.gif)
-
-<h3 align="left"> File Encryption (Click on the picture to zoom it) </h3>
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileCRYPT.gif)
-
-<h3 align="left"> File Decryption Error (Click on the picture to zoom it) </h3>
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/FileErrorDCRYPT.gif)
-
-As we can see, the error message says: <h4>"HashVerificationFilter: message hash or MAC not valid."</h4> 
-It means that the hash (signature) of one of the passwords we have entered for decryption doesn't not correspond to the hash (signature) of one of the passwords we have entered for encryption. Thus, the decryption doesn't work and the data contained in the file has been erased.
+1) In command line, go to the program directory.
+2) Type < make > to compile and build the files.
+3) Type ./shadow to run the program. Enjoy.
