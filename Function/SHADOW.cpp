@@ -287,7 +287,7 @@ void SHADOW::folder()
 			std::cout << "\n";
 			condition2:
 				pass2 = getpass("(ENTER 2ND PASSWORD) > ");
-				if(pass1==pass2)
+				if(pass2==pass1 or !checkPassword(pass2))
 				{
 					system("clear");
 					about();
