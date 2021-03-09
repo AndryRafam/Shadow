@@ -6,7 +6,6 @@
 class SHADOW
 {
 	private:
-		inline bool fileCheck(const std::string &filename);
 		inline bool checkDigit(std::string str);
 		inline bool checkUpper(std::string str);
 		inline bool checkLower(std::string str);
