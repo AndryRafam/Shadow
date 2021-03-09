@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <iomanip>
 #include <limits>
 #include <unistd.h>
 #include <cctype>
@@ -71,9 +70,8 @@ inline void SHADOW::about()
 
 	while(std::getline(infile,line))
 	{
-		std::cout << Green << line << std::endl;
+		std::cout << line << std::endl;
 	}
-	std::cout << Reset;
 	infile.close();
 	return;
 }
@@ -137,7 +135,7 @@ void SHADOW::file()
 				system("clear");
 				std::cout << "\n";
 				about();
-				std::cout << Red << std::setw(24) << "" << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
+				std::cout << Red << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto label; 
 			}
 			condition1: 
@@ -147,7 +145,7 @@ void SHADOW::file()
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
+					std::cout << Red << "SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. TRY AGAIN. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
 					goto condition1;
 				}
 			std::cout << "\n";
@@ -157,7 +155,7 @@ void SHADOW::file()
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY,  2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n";
+					std::cout << Red << "SORRY,  2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n";
 					goto condition2;
 				}
 			std::string line;
@@ -184,7 +182,7 @@ void SHADOW::file()
 			ofile.close();
 			system("clear");
 			about();
-			std::cout << "\n" << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << "\n\n";
+			std::cout << "\n" << Red <<"(FILE SUCCESSFULLY ENCRYPTED)" << Reset << "\n\n";
 		}
 		else if(choice == "d")
 		{
@@ -201,7 +199,7 @@ void SHADOW::file()
 				system("clear");
 				about();
 				std::cout << "\n";
-				std::cout << Red << std::setw(24) << "" << " FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
+				std::cout << Red << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto labs;
 			}
 			std::cout << "\n";
@@ -234,7 +232,7 @@ void SHADOW::file()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(24) << "" <<"(FILE SUCCESSFULLY DECRYPTED - CHECK YOUR FILE)" << Reset << "\n\n";	
+			std::cout << Red <<"(FILE SUCCESSFULLY DECRYPTED - CHECK YOUR FILE)" << Reset << "\n\n";	
 		}
 		else
 		{
@@ -281,7 +279,7 @@ void SHADOW::folder()
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
+					std::cout << Red << "SORRY, 1ST PASSWORD NOT ENOUGH COMPLEX. (REMEMBER THE PASSWORD RULES)" << Reset << "\n";
 					goto condition1;
 				}
 			std::cout << "\n";
@@ -291,7 +289,7 @@ void SHADOW::folder()
 				{
 					system("clear");
 					about();
-					std::cout << Red << std::setw(24) << "" << " SORRY, 2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n\n";
+					std::cout << Red << "SORRY, 2ND PASSWORD NOT ENOUGH COMPLEX OR SAME AS 1ST PASSWORD. TRY AGAIN." << Reset << "\n\n";
 					goto condition2;
 				}
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
@@ -330,7 +328,7 @@ void SHADOW::folder()
 			}
 			system("clear");
 			about();
-			std::cout << "\n" << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY ENCRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";			
+			std::cout << "\n" << Red <<"(FOLDER SUCCESSFULLY ENCRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";			
 		}
 		else if(choice == "d")
 		{
@@ -380,7 +378,7 @@ void SHADOW::folder()
 			system("clear");
 			about();
 			std::cout << "\n";
-			std::cout << Red << std::setw(24) << "" <<"(FOLDER SUCCESSFULLY DECRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";	
+			std::cout << Red <<"(FOLDER SUCCESSFULLY DECRYPTED - CHECK YOUR FOLDER)" << Reset << "\n\n";	
 		}
 		else
 		{
@@ -399,14 +397,7 @@ void SHADOW::run()
 	
 	system("clear");
 	about();
-	std::cout << "\n";
-	std::cout << std::setw(32) << "" << Red << "[ PRESS ENTER TO START ]" << Reset;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-	system("clear");
-	std::cout << "\n" << std::setw(24) << "" << Red << "READ THE PASSWORD RULES FIRST." << Reset << "\n\n";
-	passRules();
-	std::cout << std::setw(16) << "" << Red << "[ DO YOU UNDERSTAND THE RULES ? IF YES, PRESS ENTER TO RUN ]" << Reset;
+	std::cout << Red << "[ PRESS ENTER TO START ]" << Reset;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	label:
@@ -439,3 +430,4 @@ void SHADOW::run()
 }
 
 SHADOW::~SHADOW(void){ }
+
