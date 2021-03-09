@@ -187,7 +187,6 @@ void SHADOW::file()
 			{
 				system("clear");
 				about();
-				std::cout << "\n";
 				std::cout << Red << "FILE DOESN'T EXIST. PLEASE TRY AGAIN." << Reset << "\n";
 				goto labs;
 			}
