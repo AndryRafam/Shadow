@@ -21,6 +21,6 @@ The salt parameters (one for each passwords, two by two different) are generated
 - 2) Type < make > to compile and build the files.
 - 3) Type ./shadow to run the program. Enjoy.
 
-<h2 align="left"> WARRANTY
+<h2 align="left"> WARRANTY </h2>
   
   THIS IS A FREE SOFTWARE (GPL Version 3 License) AND IT COMES WITH ABSOLUTELY NO WARRANTY OF ANY KIND.
