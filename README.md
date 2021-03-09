@@ -4,7 +4,6 @@
 ![](https://img.shields.io/badge/Algorithm-SHA-orange.svg?style=plastic&logo)
 ![](https://img.shields.io/badge/Tools-SublimeText-orange.svg?style=plastic&logo)
 <h1 align="center"> SHADOW </h1>
-SHADOW is a full double encryption/decryption program which means that it can encrypt/decrypt files or folders. The program is based on AES-256-GCM mode and SHA-256.
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderC.gif)
 
