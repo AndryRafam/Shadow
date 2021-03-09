@@ -14,6 +14,7 @@ SHADOW is a full double encryption/decryption program which means that it can en
 
 The Salt.txt file is as it sounds, a file which contains random strings used as salt parameter for passwords.
 The salt parameters (one for each passwords, two by two different) are generated randomly.
+Users can update the Salt.txt file at will.
 
 <h2 align="left"> HOW TO RUN ON LINUX </h2>
 
