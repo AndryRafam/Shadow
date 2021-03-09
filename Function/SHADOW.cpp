@@ -52,16 +52,6 @@ inline bool SHADOW::checkPassword(std::string str)
 	return((checkDigit(str) && checkLower(str) && checkUpper(str) && checkSpecChar(str) && str.length()>=16) ? true:false);
 }
 
-inline bool SHADOW::fileCheck(const std::string &filename)
-{
-	for(auto i = 0; filename[i]; i++)
-	{
-		if(filename[i]=='.')
-			return true;
-	}
-	return false;
-}
-
 inline void SHADOW::about()
 {
 	std::ifstream infile;
@@ -130,7 +120,7 @@ void SHADOW::file()
 				std::cout << "(FILE TO ENCRYPT (Input: /Absolute/path/to/file.extension)) > ";
 				std::getline(std::cin,filename);
 
-			if(!fileCheck(filename))
+			if(!std::filesystem::is_regular_file(filename))
 			{
 				system("clear");
 				std::cout << "\n";
@@ -194,7 +184,7 @@ void SHADOW::file()
 				std::getline(std::cin,filename);
 
 
-			if(!fileCheck(filename))
+			if(!std::filesystem::is_regular_file(filename))
 			{
 				system("clear");
 				about();
@@ -294,7 +284,7 @@ void SHADOW::folder()
 				}
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
-				if(fileCheck(entry.path()))
+				if(std::filesystem::is_regular_file(entry.path()))
 				{
 					vec.emplace_back(entry.path());
 				}
@@ -343,7 +333,7 @@ void SHADOW::folder()
 			pass2 = getpass("(ENTER 2ND PASSWORD) > ");
 			for(const auto & entry : std::filesystem::recursive_directory_iterator(foldername))
 			{
-				if(fileCheck(entry.path()))
+				if(std::filesystem::is_regular_file(entry.path()))
 				{
 					vec.emplace_back(entry.path());
 				}
@@ -430,4 +420,3 @@ void SHADOW::run()
 }
 
 SHADOW::~SHADOW(void){ }
-
