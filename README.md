@@ -7,7 +7,7 @@
 
 <h3 algin="left"> About the program </h3>
 
-Shadow is an encryption program (double) using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 (for HKDF).
+Shadow is an encryption program (double) using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 (for HKDF). The program works with two passwords (each different).
 For more information about AES-256, Galois/Counter Mode and HKDF; follow the following links:
 
 AES-256 > https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
