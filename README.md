@@ -5,6 +5,8 @@
 ![](https://img.shields.io/badge/Tools-SublimeText-orange.svg?style=plastic&logo)
 <h1 align="center"> SHADOW </h1>
 
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/fileCrypt.gif)
+
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderCrypt.gif)
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderDcrypt.gif)
