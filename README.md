@@ -9,8 +9,11 @@
 
 Shadow is an encryption program (double) using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 (for HKDF).
 For more information about AES-256, Galois/Counter Mode and HKDF; follow the following links:
+
 AES-256 > https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+
 GCM > https://en.wikipedia.org/wiki/Galois/Counter_Mode
+
 HKDF > https://en.wikipedia.org/wiki/HKDF
 
 <h3 align="left"> Precision about the output </h3>
