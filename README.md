@@ -11,7 +11,7 @@
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderDcrypt.gif)
 
-Results are not outputted on the screen. The program tells users only that the folder/file is encrypted or decrypted; which is indeed the case.
+Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
 Open the file / folder to see the result.
 
 <h3 align="left"> Precision about the Salt.txt FILE </h3>
