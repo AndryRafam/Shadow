@@ -5,14 +5,22 @@
 ![](https://img.shields.io/badge/Tools-SublimeText-orange.svg?style=plastic&logo)
 <h1 align="center"> SHADOW </h1>
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderCrypt.gif)
+<h3 algin="left"> About the program </h3>
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderDcrypt.gif)
+Shadow is an encryption program (double) using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 (for HKDF).
+For more information about AES-256, Galois/Counter Mode and HKDF; follow the following links:
+AES-256 > https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+GCM > https://en.wikipedia.org/wiki/Galois/Counter_Mode
+HKDF > https://en.wikipedia.org/wiki/HKDF
 
 <h3 align="left"> Precision about the output </h3>
 
 Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
 Open the file / folder to see the result.
+
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderCrypt.gif)
+
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderDcrypt.gif)
 
 <h3 align="left"> Precision about the Salt.txt FILE </h3>
 
