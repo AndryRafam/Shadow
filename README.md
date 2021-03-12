@@ -39,7 +39,7 @@ Users can update the Salt.txt file at will.
 
 <h3 align="left"> User command </h3>
 
-<h4 align="left"> - Type usage </h4>: to print the user command.
-<h4 align="left"> - Type password </h4>: to print password rules.
-<h4 algin="left"> - Type show_license </h4>: to print the license
-<h4 align="left"> - Type password </h4>: to print the password rules
+- Type "usage": print user command
+- Type "show_license": print the license
+- Type "password": print password rules
+- Type "clear": clear the screen
