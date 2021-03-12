@@ -21,9 +21,9 @@ HKDF > https://en.wikipedia.org/wiki/HKDF
 Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
 Open the file / folder to see the result.
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderCrypt.gif)
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Crypt.gif)
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/folderDcrypt.gif)
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Decrypt.gif)
 
 <h3 align="left"> Precision about the Salt.txt FILE </h3>
 
@@ -37,6 +37,9 @@ Users can update the Salt.txt file at will.
 - 2) Type <make> to compile and build the files.
 - 3) Type ./shadow <encrypt/decrypt> to encrypt/decrypt
 
-<h3 align="left"> WARRANTY </h3>
-  
-  THIS IS A FREE SOFTWARE (GPL Version 3 License) AND IT COMES WITH ABSOLUTELY NO WARRANTY OF ANY KIND.
+<h3 align="left"> User command </h3>
+
+<h4 align="left"> - Type usage </h4>: to print the user command.
+<h4 align="left"> - Type password </h4>: to print password rules.
+<h4 algin="left"> - Type show_license </h4>: to print the license
+<h4 align="left"> - Type password </h4>: to print the password rules
