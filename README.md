@@ -39,8 +39,8 @@ Users can update the Salt.txt file at will.
 
 <h3 align="left"> User command </h3>
 
-* Type **usage**: print user command
-* Type **show_license**: print the license
-* Type **password**: print password rules
-* Type **clear**: clear the screen
-* Type **exit**: exit the program
+* **usage**: print user command
+* **show_license**: print the license
+* **password**: print password rules
+* **clear**: clear the screen
+* **exit**: exit the program
