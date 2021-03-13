@@ -301,11 +301,11 @@ void Shadow::encrypt(std::string mode){
 	system("clear");
 	about();
 	std::cout << "\n" << "\e[1m" << "Encryption Mode" << "\e[0m" << "\n\n";
-	label:
-		std::cout << "> ";
-		std::string input;
-		std::cin >> input; std::cin.ignore();
 	if(mode=="encrypt"){
+		label:
+			std::cout << "> ";
+			std::string input;
+			std::cin >> input; std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
 		}
@@ -342,11 +342,11 @@ void Shadow::decrypt(std::string mode){
 	system("clear");
 	about();
 	std::cout << "\n" << "\e[1m" << "Decryption Mode" << "\e[0m" << "\n\n";
-	label:
-		std::cout << "> ";
-		std::string input;
-		std::cin >> input; std::cin.ignore();
 	if(mode=="decrypt"){
+		label:
+			std::cout << "> ";
+			std::string input;
+			std::cin >> input; std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
 		}
