@@ -9,4 +9,5 @@ Type 'usage' to print commands.
 Type 'password' to print password rules.
 Type 'show_license' to print license.
 Type 'clear' to clear the screen.
+Type 'exit' to exit the program.
 
