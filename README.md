@@ -15,15 +15,15 @@ For more information about AES-256, Galois/Counter Mode and HKDF; follow the fol
     GCM > https://en.wikipedia.org/wiki/Galois/Counter_Mode
 
     HKDF > https://en.wikipedia.org/wiki/HKDF
+    
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/E.gif)
+
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/D.gif)
 
 <h3 align="left"> Precision about the output </h3>
 
 Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
 Open the file / folder to see the result.
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/E.gif)
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/D.gif)
 
 <h3 align="left"> Precision about the Salt.txt file </h3>
 
