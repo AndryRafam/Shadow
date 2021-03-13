@@ -25,7 +25,7 @@ Open the file / folder to see the result.
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Decrypt.gif)
 
-<h3 align="left"> Precision about the Salt.txt FILE </h3>
+<h3 align="left"> Precision about the Salt.txt file </h3>
 
 The Salt.txt file is as it sounds, a file which contains random strings used as salt parameter for passwords.
 The salt parameters (one for each passwords, two by two different) are generated randomly.
