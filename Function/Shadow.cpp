@@ -308,9 +308,11 @@ void Shadow::encrypt(std::string mode){
 			std::cin >> input; std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
+			goto label;
 		}
 		else if(std::filesystem::is_directory(input)){
 			folder(mode,input);
+			goto label;
 		}
 		else if(input=="usage"){
 			usage();
@@ -329,6 +331,10 @@ void Shadow::encrypt(std::string mode){
 			about();
 			std::cout << "\n" << "\e[1m" << "Encryption Mode" << "\e[0m" << "\n\n";
 			goto label;
+		}
+		else if(input=="exit"){
+			std::cout << "halt" << "\n";
+			exit(0);
 		}
 		else{
 			std::cout << "FAIL: Command not recongnized." << "\n";
@@ -349,9 +355,11 @@ void Shadow::decrypt(std::string mode){
 			std::cin >> input; std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
+			goto label;
 		}
 		else if(std::filesystem::is_directory(input)){
 			folder(mode,input);
+			goto label;
 		}
 		else if(input=="usage"){
 			usage();
@@ -370,6 +378,10 @@ void Shadow::decrypt(std::string mode){
 			about();
 			std::cout << "\n" << "\e[1m" << "Decryption Mode" << "\e[0m" << "\n\n";
 			goto label;
+		}
+		else if(input=="exit"){
+			std::cout << "halt" << "\n";
+			exit(0);
 		}
 		else{
 			std::cout << "FAIL: Command not recongnized." << "\n";
