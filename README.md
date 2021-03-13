@@ -23,7 +23,7 @@ Open the file / folder to see the result.
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Crypt.gif)
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Decrypt.gif)
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/D.gif)
 
 <h3 align="left"> Precision about the Salt.txt file </h3>
 
