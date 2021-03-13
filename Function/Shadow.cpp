@@ -15,6 +15,9 @@
 
 #include "../Core/Shadow.h"
 
+#define Yellow "\x1B[33m"
+#define Reset "\x1B[0m"
+
 using namespace CryptoPP;
 
 Shadow::Shadow(void){ }
@@ -94,7 +97,6 @@ inline void Shadow::about(){
 		std::cout << "\e[1m" << line << "\e[0m" << std::endl;
 	}
 	infile.close();
-	std::cout << "\n";
 	return;
 }
 
@@ -181,7 +183,7 @@ void Shadow::file(std::string mode, std::string path){
 		ofile.open(path,std::ofstream::out | std::ofstream::trunc);
 		ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 		ofile.close();
-		std::cout << "> Encrypted" << "\n";
+		std::cout << "> " << "\e[1m" << Yellow << "Encrypted" <<  "\e[0m" << Reset << "\n";
 	}
 	else if(mode=="decrypt"){
 		pass1 = getpass("> 1st Password: ");
@@ -206,8 +208,8 @@ void Shadow::file(std::string mode, std::string path){
 		ofile.open(path,std::ofstream::out | std::ofstream::trunc);
 		ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 		ofile.close();
-		std::cout << "> Decrypted" << "\n";
-	}
+		std::cout << "> " << "\e[1m" << Yellow << "Decrypted" <<  "\e[0m" << Reset << "\n";
+		}
 	return;
 }
 
@@ -258,7 +260,7 @@ void Shadow::folder(std::string mode, std::string path){
 			ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 			ofile.close();
 		}
-		std::cout << "> Encrypted" << "\n";		
+		std::cout << "> " << "\e[1m" << Yellow << "Encrypted" <<  "\e[0m" << Reset << "\n";
 	}
 	else if(mode=="decrypt"){
 		pass1 = getpass("> 1st Password: ");
@@ -292,7 +294,7 @@ void Shadow::folder(std::string mode, std::string path){
 			ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 			ofile.close();
 		}
-		std::cout << "> Decrypted" << "\n";
+		std::cout << "> " << "\e[1m" << Yellow << "Decrypted" <<  "\e[0m" << Reset << "\n";
 	}
 	return;
 }
