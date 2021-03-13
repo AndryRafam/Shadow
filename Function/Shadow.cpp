@@ -181,7 +181,7 @@ void Shadow::file(std::string mode, std::string path){
 		ofile.open(path,std::ofstream::out | std::ofstream::trunc);
 		ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 		ofile.close();
-		std::cout << "> Encrypted" << "\n\n";
+		std::cout << "> Encrypted" << "\n";
 	}
 	else if(mode=="decrypt"){
 		pass1 = getpass("> 1st Password: ");
@@ -206,7 +206,7 @@ void Shadow::file(std::string mode, std::string path){
 		ofile.open(path,std::ofstream::out | std::ofstream::trunc);
 		ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 		ofile.close();
-		std::cout << "> Decrypted" << "\n\n";
+		std::cout << "> Decrypted" << "\n";
 	}
 	return;
 }
@@ -258,7 +258,7 @@ void Shadow::folder(std::string mode, std::string path){
 			ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 			ofile.close();
 		}
-		std::cout << "> Encrypted" << "\n\n";		
+		std::cout << "> Encrypted" << "\n";		
 	}
 	else if(mode=="decrypt"){
 		pass1 = getpass("> 1st Password: ");
@@ -292,7 +292,7 @@ void Shadow::folder(std::string mode, std::string path){
 			ofile << Aes256(sink,pass1,salt[s1],pass2,salt[s2],mode);
 			ofile.close();
 		}
-		std::cout << "> Decrypted" << "\n\n";
+		std::cout << "> Decrypted" << "\n";
 	}
 	return;
 }
