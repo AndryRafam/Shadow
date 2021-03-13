@@ -35,7 +35,7 @@ Users can update the Salt.txt file at will.
 
     1) In command line, go to the program directory.
     2) Type <make> to compile and build the files.
-    3) Type ./shadow <encrypt/decrypt> to encrypt/decrypt
+    3) Type ./shadow <encrypt/decrypt> to encrypt/decrypt.
 
 <h3 align="left"> User command </h3>
 
