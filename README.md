@@ -21,7 +21,7 @@ For more information about AES-256, Galois/Counter Mode and HKDF; follow the fol
 Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
 Open the file / folder to see the result.
 
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/Crypt.gif)
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/E.gif)
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/D.gif)
 
