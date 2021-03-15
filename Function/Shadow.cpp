@@ -339,7 +339,7 @@ void Shadow::encrypt(std::string mode){
 			exit(0);
 		}
 		else{
-			std::cout << "FAIL: Command not recongnized." << "\n";
+			std::cout << "FAIL: Input " << input <<" not valid." << "\n";
 			goto label;
 		}
 	}
@@ -386,7 +386,7 @@ void Shadow::decrypt(std::string mode){
 			exit(0);
 		}
 		else{
-			std::cout << "FAIL: Command not recongnized." << "\n";
+			std::cout << "FAIL: Input " << input <<" not valid." << "\n";
 			goto label;
 		}
 	}
