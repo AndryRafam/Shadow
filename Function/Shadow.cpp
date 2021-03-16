@@ -15,6 +15,7 @@
 
 #include "../Core/Shadow.h"
 
+#define Red "\x1B[31m"
 #define Yellow "\x1B[33m"
 #define Reset "\x1B[0m"
 
@@ -299,15 +300,24 @@ void Shadow::folder(std::string mode, std::string path){
 	return;
 }
 
-void Shadow::encrypt(std::string mode){
+void Shadow::run(){
 	system("clear");
 	about();
-	std::cout << "\n" << "\e[1m" << "Encryption Mode" << "\e[0m" << "\n\n";
+	Mode:
+		std::cout << "\n" << "\e[1m" << "<encrypt/decrypt>" << "\e[0m" << "\n";
+		std::cout << "> ";
+		std::string mode;
+		std::cin >> mode;
+		std::cin.ignore();
 	if(mode=="encrypt"){
+		system("clear");
+		about();
+		std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << "\n";
 		label:
-			std::cout << "> ";
+		std::cout << "> ";
 			std::string input;
-			std::cin >> input; std::cin.ignore();
+			std::cin >> input;
+			std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
 			goto label;
@@ -331,66 +341,87 @@ void Shadow::encrypt(std::string mode){
 		else if(input=="clear"){
 			system("clear");
 			about();
-			std::cout << "\n" << "\e[1m" << "Encryption Mode" << "\e[0m" << "\n\n";
+			std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << "\n";
 			goto label;
 		}
 		else if(input=="exit"){
-			std::cout << "halt" << "\n";
+			std::cout << "\e[1m" << Red << "Encryption mode: OFF" << "\e[0m" << Reset;
+			goto Mode;
+		}
+		else if(input=="quit"){
+			std::cout << "program terminated" << "\n";
 			exit(0);
 		}
 		else{
-			std::cout << "FAIL: Input " << input <<" not valid." << "\n";
-			goto label;
+			std::cout << "FAIL: can not find command " << input << "\n";
+			goto label; 
 		}
 	}
-	return;
-}
-
-void Shadow::decrypt(std::string mode){
-	system("clear");
-	about();
-	std::cout << "\n" << "\e[1m" << "Decryption Mode" << "\e[0m" << "\n\n";
-	if(mode=="decrypt"){
-		label:
+	else if(mode=="decrypt"){
+		system("clear");
+		about();
+		std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << "\n";
+		labs:
 			std::cout << "> ";
 			std::string input;
-			std::cin >> input; std::cin.ignore();
+			std::cin >> input;
+			std::cin.ignore();
 		if(std::filesystem::is_regular_file(input)){
 			file(mode,input);
-			goto label;
+			goto labs;
 		}
 		else if(std::filesystem::is_directory(input)){
 			folder(mode,input);
-			goto label;
+			goto labs;
 		}
 		else if(input=="usage"){
 			usage();
-			goto label;
+			goto labs;
 		}
 		else if(input=="password"){
 			pass_rules();
-			goto label;
+			goto labs;
 		}
 		else if(input=="show_license"){
 			license();
-			goto label;
+			goto labs;
 		}
 		else if(input=="clear"){
 			system("clear");
 			about();
-			std::cout << "\n" << "\e[1m" << "Decryption Mode" << "\e[0m" << "\n\n";
-			goto label;
+			std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << "\n";
+			goto labs;
 		}
 		else if(input=="exit"){
-			std::cout << "halt" << "\n";
+			std::cout << "\e[1m" << Red << "Decryption mode: OFF" << "\e[0m" << Reset;
+			goto Mode;
+		}
+		else if(input=="quit"){
+			std::cout << "program terminated" << "\n";
 			exit(0);
 		}
 		else{
-			std::cout << "FAIL: Input " << input <<" not valid." << "\n";
-			goto label;
+			std::cout << "FAIL: can not find command " << input << "\n";
+			goto labs; 
 		}
 	}
-	return;
+	else if(mode=="show_license"){
+		license();
+		goto Mode;
+	}
+	else if(mode=="clear"){
+		system("clear");
+		about();
+		goto Mode;
+	}
+	else if(mode=="quit"){
+		std::cout << "program terminated" << "\n";
+		exit(0);
+	}
+	else{
+		std::cout << "FAIL: can not find command " << mode;
+		goto Mode;
+	}
 }
 
 Shadow::~Shadow(void){ }
