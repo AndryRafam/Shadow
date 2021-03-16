@@ -16,9 +16,7 @@ For more information about AES-256, Galois/Counter Mode and HKDF; follow the fol
 
     HKDF > https://en.wikipedia.org/wiki/HKDF
     
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/encrypt.gif)
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/decrypt.gif)
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
 
 <h3 align="left"> Precision about the output </h3>
 
