@@ -35,10 +35,30 @@ Users can update the Salt.txt file at will.
     2) Type <make> to compile and build the files.
     3) Type ./shadow <encrypt/decrypt> to encrypt/decrypt.
 
-<h3 align="left"> User command </h3>
+<h3 align="left"> Supported commands </h3>
 
-* **usage**: print user command
-* **show_license**: print the license
-* **password**: print password rules
-* **clear**: clear the screen
-* **exit**: exit the program
+<h4 align="left"> General </h4>
+
+* **encrypt**: Enable the encryption mode
+* **decrypt**: Enable the decryption mode
+* **show_license**: Print the license
+* **clear**: Clear the screen
+* **quit**: Terminated the program
+
+<h4 algin="left"> Encryption mode </h4>
+
+* **usage**: Print tutorial for encryption mode
+* **password**: Print password rules
+* **show_license**: Print the license
+* **clear**: Clear the screen
+* **exit**: Exit the encryption mode
+* **quit**: Terminated the program
+
+<h4 align="left"> Decryption mode </h4>
+
+* **usage**: Print tutorial for decryption mode
+* **password**: Print password rules
+* **show_license**: Print the license
+* **clear**: Clear the screen
+* **exit**: Exit the decryption mode
+* **quit**: Terminated the program
