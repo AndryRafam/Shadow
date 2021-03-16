@@ -34,6 +34,16 @@ Users can update the Salt.txt file at will.
     2) Type <make> to compile, build and link.
     3) Type ./shadow and press <enter> to run.
 
+<h3 algin="left"> Password Rules </h3>
+
+Password Rules:
+
+    1) Each passwords must be at least 16 characters long and different.
+    2) Each passwords must contains at least one UPPER CASE character.
+    3) Each passwords must contains at least one LOWER CASE character.
+    4) Each passwords must contains at least one SPECIAL CASE character.
+    5) Each passwords must contains at least one number between 0 to 9.
+
 <h3 align="left"> Supported commands </h3>
 
 <h4 align="left"> General </h4>
