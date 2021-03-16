@@ -156,14 +156,12 @@ void Shadow::file(std::string mode, std::string path){
 			pass1 = getpass("> 1st Password: ");
 			if(!checkPassword(pass1)){
 				std::cout << "FAIL: 1st Password not enough complex. Try again. Check PassRules.txt" << "\n";
-				pass_rules();
 				goto condition1;
 			}
 		condition2:
 			pass2 = getpass("> 2nd Password: ");
 			if(pass2==pass1 or !checkPassword(pass2)){
 				std::cout << "FAIL: 2nd Password not enough complex or same as the 1st password. Try again. Check PassRules.txt" << "\n";
-				pass_rules();
 				goto condition2;
 			}
 		std::string line;
@@ -226,14 +224,12 @@ void Shadow::folder(std::string mode, std::string path){
 			pass1 = getpass("> 1st Password: ");
 			if(!checkPassword(pass1)){
 				std::cout << "FAIL: 1st Password not enough complex. Try again. Check PassRules.txt" << "\n";
-				pass_rules();
 				goto condition1;
 			}
 		condition2:
 			pass2 = getpass("> 2nd Password: ");
 			if(pass2==pass1 or !checkPassword(pass2)){
 				std::cout << "FAIL: 2nd Password not enough complex or same as the 1st password. Try again. Check PassRules.txt" << "\n";
-				pass_rules();
 				goto condition2;
 			}
 		std::string line;
