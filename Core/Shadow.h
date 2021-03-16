@@ -22,8 +22,7 @@ class Shadow
 		
 	public:
 		Shadow(void);
-		void encrypt(std::string mode);
-		void decrypt(std::string mode);
+		void run();
 		~Shadow(void);
 };
 
