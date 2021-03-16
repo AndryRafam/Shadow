@@ -36,8 +36,6 @@ Users can update the Salt.txt file at will.
 
 <h3 algin="left"> Password Rules </h3>
 
-Password Rules:
-
     1) Each passwords must be at least 16 characters long and different.
     2) Each passwords must contains at least one UPPER CASE character.
     3) Each passwords must contains at least one LOWER CASE character.
