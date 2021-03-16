@@ -5,8 +5,3 @@ Shadow is a linux command line encryption (decryption) software based on AES-256
 an encryption algorithm and SHA-256 as a HKDF (Key Derivation Function based on HMAC).
 Shadow works with two different passwords.
 
-Type 'usage' to print commands.
-Type 'password' to print password rules.
-Type 'clear' to clear the screen.
-Type 'exit' to exit the program.
-
