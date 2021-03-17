@@ -312,7 +312,7 @@ void Shadow::run(){
 	if(mode=="encrypt"){
 		system("clear");
 		about();
-		std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << "\n";
+		std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << " (Type <usage> to print commands)" << "\n";
 		label:
 		std::cout << "> ";
 			std::string input;
@@ -341,7 +341,7 @@ void Shadow::run(){
 		else if(input=="clear"){
 			system("clear");
 			about();
-			std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << "\n";
+			std::cout << "\n" << Yellow << "\e[1m" << "Encryption mode: ON" << "\e[0m" << Reset << " (Type <usage> to print commands)" << "\n";
 			goto label;
 		}
 		else if(input=="exit"){
@@ -360,7 +360,7 @@ void Shadow::run(){
 	else if(mode=="decrypt"){
 		system("clear");
 		about();
-		std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << "\n";
+		std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << " (Type <usage> to print commands)" << "\n";
 		labs:
 			std::cout << "> ";
 			std::string input;
@@ -389,7 +389,7 @@ void Shadow::run(){
 		else if(input=="clear"){
 			system("clear");
 			about();
-			std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << "\n";
+			std::cout << "\n" << Yellow << "\e[1m" << "Decryption mode: ON" << "\e[0m" << Reset << " (Type <usage> to print commands)" << "\n";
 			goto labs;
 		}
 		else if(input=="exit"){
