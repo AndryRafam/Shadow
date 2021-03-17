@@ -1,0 +1,9 @@
+Commands:
+	1st Line: </Absolute/path/to file or folder>
+	2nd Line: 1st Password
+	3rd Line: 2nd Password
+	<show_license>: Print license
+	<clear>: Clear the screen
+	<exit>: Exit the current mode (encrypt/decrypt)
+	<quit>: Terminated the program
+	<password>: Print password rules
