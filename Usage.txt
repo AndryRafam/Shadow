@@ -1,5 +1,0 @@
-Usage:
-
-> 1st Line: </Absolute/path/to file or folder>
-> 2nd Line: 1st Password
-> 3rd Line: 2nd Password
