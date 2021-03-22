@@ -50,7 +50,7 @@ Users can update the Salt.txt file at will.
 * **decrypt**: Enable the decryption mode
 * **show_license**: Print the license
 * **clear**: Clear the screen
-* **quit**: Terminated the program
+* **quit**: Terminate the program
 
 <h4 algin="left"> Encryption mode </h4>
 
@@ -59,7 +59,7 @@ Users can update the Salt.txt file at will.
 * **show_license**: Print the license
 * **clear**: Clear the screen
 * **exit**: Exit the encryption mode
-* **quit**: Terminated the program
+* **quit**: Terminate the program
 
 <h4 align="left"> Decryption mode </h4>
 
@@ -68,4 +68,4 @@ Users can update the Salt.txt file at will.
 * **show_license**: Print the license
 * **clear**: Clear the screen
 * **exit**: Exit the decryption mode
-* **quit**: Terminated the program
+* **quit**: Terminate the program
