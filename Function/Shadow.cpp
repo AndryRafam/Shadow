@@ -134,6 +134,11 @@ inline void Shadow::license(){
 	}
 	infile.close();
 	std::cout << "\n";
+	std::string key;
+	do{
+		std::cout << "Hit q (and enter/return) to quit: ";
+		std::cin >> key;
+	}while(key!="q");
 	return;
 }
 
