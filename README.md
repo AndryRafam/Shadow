@@ -7,11 +7,11 @@
 
 <h3 algin="left"> About the program </h3>
 
-Shadow is a command line encryption program using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 for HKDF (Key Derivation function based on HMAC). The program works with two passwords (each different). For more information about AES-256, Galois/Counter Mode and HKDF (Hash Derivation Key Function).
+Shadow is a command line encryption program using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 for HKDF (Key Derivation function based on HMAC). The program works with two passwords (each different). For more information about AES-256, Galois/Counter Mode and HKDF (Hash Derivation Key Function), follow the link below.
 
-    AES-256 > https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+    AES-256 > https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 
-    GCM > https://en.wikipedia.org/wiki/Galois/Counter_Mode
+    GCM > https://en.wikipedia.org/wiki/Galois/Counter_Mode)
 
     HKDF > https://en.wikipedia.org/wiki/HKDF
     
