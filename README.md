@@ -1,8 +1,8 @@
-![](https://img.shields.io/badge/Code-C++-brigthgreen.svg?style=plastic&logo=c%2B%2B)
-![](https://img.shields.io/badge/OS-Linux-brigthgreen.svg?style=plastic&logo=Linux)
-![](https://img.shields.io/badge/Algorithm-AES-brigthgreen.svg?style=plastic&logo)
-![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=plastic&logo)
-![](https://img.shields.io/badge/Tools-SublimeText-brigthgreen.svg?style=plastic&logo)
+![](https://img.shields.io/badge/Code-C++-brigthgreen.svg?style=for-the-bdage&logo=c%2B%2B)
+![](https://img.shields.io/badge/OS-Linux-brigthgreen.svg?style=for-the-bdage&logo=Linux)
+![](https://img.shields.io/badge/Algorithm-AES-brigthgreen.svg?style=for-the-bdage&logo)
+![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=for-the-bdage&logo)
+![](https://img.shields.io/badge/Tools-SublimeText-brigthgreen.svg?style=for-the-bdage&logo)
 <h1 align="center"> SHADOW </h1>
 
 <h3 algin="left"> About the program </h3>
