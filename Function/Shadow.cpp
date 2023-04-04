@@ -151,6 +151,7 @@ inline void Shadow::license(){
 	return;
 }
 
+// Function used to add salt in the password
 inline int Shadow::sum(std::string str){
 	int c = 0;
 	for(auto x = 0; str[x]; x++){
