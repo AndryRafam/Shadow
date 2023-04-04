@@ -23,6 +23,7 @@ using namespace CryptoPP;
 
 Shadow::Shadow(void){ }
 
+// Aes-256 implementation (Encryption and Decryption)
 std::string Shadow::Aes256(std::string input,std::string pass1,std::string salt1,std::string pass2,std::string salt2,std::string mode){
 	std::string inter, final, recovered;
 	try{
@@ -63,18 +64,22 @@ std::string Shadow::Aes256(std::string input,std::string pass1,std::string salt1
 		return recovered;
 }
 
+// Check if password contains digit
 inline bool Shadow::checkDigit(std::string str){
 	return (std::any_of(str.begin(),str.end(), ::isdigit) ? true:false);
 }
 
+// Check if password contains lowercase character
 inline bool Shadow::checkLower(std::string str){
 	return (std::any_of(str.begin(),str.end(), ::islower) ? true:false);
 }
 
+// Check if password contains uppercase character
 inline bool Shadow::checkUpper(std::string str){
 	return (std::any_of(str.begin(),str.end(), ::isupper) ? true:false);
 }
 
+// Check if password contains special character
 inline bool Shadow::checkSpecChar(std::string str){
 	bool flag = false;
 	for(auto i = 0; str[i]; i++){
@@ -86,6 +91,7 @@ inline bool Shadow::checkSpecChar(std::string str){
 	return flag;
 }
 
+// Check if password follow the rules 
 inline bool Shadow::checkPassword(std::string str){
 	return((checkDigit(str) && checkLower(str) && checkUpper(str) && checkSpecChar(str) && str.length()>=16) ? true:false);
 }
@@ -101,6 +107,7 @@ inline void Shadow::about(){
 	return;
 }
 
+// Print tutorial of the program (how to use the program)
 inline void Shadow::usage(){
 	std::ifstream infile;
 	std::string line;
@@ -113,6 +120,7 @@ inline void Shadow::usage(){
 	return;	
 }
 
+// Print password rules
 inline void Shadow::pass_rules(){
 	std::ifstream infile;
 	std::string line;
@@ -125,6 +133,7 @@ inline void Shadow::pass_rules(){
 	return;
 }
 
+// Print license
 inline void Shadow::license(){
 	std::ifstream infile;
 	std::string line;
@@ -150,6 +159,7 @@ inline int Shadow::sum(std::string str){
 	return c;
 }
 
+// Encryption and Decryption of files
 void Shadow::file(std::string mode, std::string path){
 	std::string sink = "";
 	std::string pass1,pass2;
@@ -219,6 +229,7 @@ void Shadow::file(std::string mode, std::string path){
 	return;
 }
 
+// Encryption and Decryption of folders
 void Shadow::folder(std::string mode, std::string path){
 	std::string pass1,pass2;
 	std::vector<std::string> salt,data;
@@ -305,6 +316,7 @@ void Shadow::folder(std::string mode, std::string path){
 	return;
 }
 
+// Driver program
 void Shadow::run(){
 	system("clear");
 	about();
