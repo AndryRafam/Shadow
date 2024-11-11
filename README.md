@@ -4,6 +4,10 @@
 ![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=for-the-badge&logo)
 <h1 align="center"> SHADOW </h1>
 
+<h3 algin="left"> Output Example </h3>
+
+![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
+
 <h3 algin="left"> About the program </h3>
 
 Shadow is a command line interface (CLI) encryption program using AES-256 in Galois/Counter Mode (GCM) as an encryption algorithm and SHA-256 for HKDF (Key Derivation function based on HMAC). The program works with two passwords (each different). For more information about AES-256, Galois Counter Mode (GCM) and HKDF (Hash Derivation Key Function), follow the link below.
@@ -11,15 +15,6 @@ Shadow is a command line interface (CLI) encryption program using AES-256 in Gal
    - [AES-256](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
    - [GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode)
    - [HKDF](https://en.wikipedia.org/wiki/HKDF)
-
-<h3 algin="left"> Output Example </h3>
-
-![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
-
-<h3 align="left"> Precision about the output </h3>
-
-Results are not outputted on the screen. The program tells only to the user that the folder/file has been encrypted or decrypted; which is indeed the case.
-Open the file / folder to see the result.
 
 <h3 align="left"> Precision about the Salt.txt file </h3>
 
