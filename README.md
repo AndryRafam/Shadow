@@ -4,8 +4,6 @@
 ![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=for-the-badge&logo)
 <h1 align="center"> SHADOW </h1>
 
-<h3 algin="left"> Output Example </h3>
-
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
 
 <h3 algin="left"> About the program </h3>
