@@ -2,7 +2,7 @@
 ![](https://img.shields.io/badge/OS-Linux-brigthgreen.svg?style=for-the-badge&logo=Linux)
 ![](https://img.shields.io/badge/Algorithm-AES-brigthgreen.svg?style=for-the-badge&logo)
 ![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=for-the-badge&logo)
-<h1 align="center"> SHADOW </h1>
+<h1 align="left"> SHADOW </h1>
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
 
