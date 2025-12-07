@@ -1,7 +1,6 @@
-![](https://img.shields.io/badge/Code-C++-brigthgreen.svg?style=for-the-badge&logo=c%2B%2B)
-![](https://img.shields.io/badge/OS-Linux-brigthgreen.svg?style=for-the-badge&logo=Linux)
-![](https://img.shields.io/badge/Algorithm-AES-brigthgreen.svg?style=for-the-badge&logo)
-![](https://img.shields.io/badge/Algorithm-SHA-brigthgreen.svg?style=for-the-badge&logo)
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
+
 <h1 align="left"> SHADOW </h1>
 
 ![Output](https://github.com/AndryRafam/Shadow/blob/main/Output/out.gif)
